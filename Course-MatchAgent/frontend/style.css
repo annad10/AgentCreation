@@ -1,0 +1,13 @@
+/* Basic styling for the Course Match placeholder page. */
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #17312c; background: #f5f6f1; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 880px; margin: 0 auto; padding: 80px 24px; }
+.eyebrow { font-size: .75rem; letter-spacing: .14em; font-weight: 700; }
+h1 { font-size: clamp(2.8rem, 8vw, 5rem); letter-spacing: -.05em; margin: 24px 0; line-height: 1.1; }
+.intro { font-size: 1.2rem; line-height: 1.7; max-width: 650px; }
+section { background: white; border: 1px solid #dce3d9; border-radius: 20px; margin-top: 40px; padding: 32px; }
+h2 { font-size: 1.5rem; }
+p { line-height: 1.65; }
+.badge { display: inline-block; background: #e9f2dd; padding: 6px 12px; border-radius: 20px; font-size: .8rem; }
+.note { color: #53645e; font-size: .9rem; }
