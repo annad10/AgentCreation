@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Course Match</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body><main>
+<p class="eyebrow">AI FOR STRATEGIC MANAGEMENT</p>
+<h1>Course Match</h1>
+<p class="intro">Compare course content and learning outcomes, with source excerpts.</p>
+<p class="notice"><strong>Choose your comparison.</strong> Keyword comparison and Local AI run on your computer. OpenAI is an optional cloud service. All results require advisor review.</p>
+<section class="card"><h2>Compare two syllabi</h2>
+<p id="pdf-help" class="hint">PDF limits: 10 MB and 30 pages each. Tables are extracted where detectable. Scanned PDFs need OCR (text recognition) first. Always check the extracted text against your PDF.</p>
+<form id="course-form">
+<fieldset><legend>Home-university syllabus</legend>
+<label for="home-pdf">Upload a syllabus PDF (optional)</label>
+<input id="home-pdf" type="file" accept="application/pdf,.pdf" aria-describedby="pdf-help home-upload-status">
+<p id="home-upload-status" class="hint" role="status" aria-live="polite">No PDF selected.</p>
+<details id="home-preview" hidden><summary>View extracted tables</summary><div id="home-tables"></div></details>
+<label for="syllabus">Text to compare — review and correct after uploading</label>
+<textarea id="syllabus" rows="8" required maxlength="30000" placeholder="Paste the course description, topics and learning outcomes…"></textarea>
+</fieldset>
+<fieldset><legend>Bocconi syllabus</legend>
+<label for="bocconi-pdf">Upload a syllabus PDF (optional)</label>
+<input id="bocconi-pdf" type="file" accept="application/pdf,.pdf" aria-describedby="pdf-help bocconi-upload-status">
+<p id="bocconi-upload-status" class="hint" role="status" aria-live="polite">No PDF selected.</p>
+<details id="bocconi-preview" hidden><summary>View extracted tables</summary><div id="bocconi-tables"></div></details>
+<label for="bocconi-syllabus">Text to compare — review and correct after uploading</label>
+<textarea id="bocconi-syllabus" rows="8" required maxlength="30000" placeholder="Paste the official Bocconi syllabus you want to compare…"></textarea>
+</fieldset>
+<fieldset><legend>Comparison method</legend>
+<label for="comparison-mode">Choose a method</label>
+<select id="comparison-mode">
+<option value="keyword">Keyword comparison — local, no API key</option>
+<option value="ollama">Local AI — Qwen (Ollama), no API key</option>
+<option value="ai">AI analysis — OpenAI</option>
+</select>
+<p id="local-status" class="hint" hidden>Keep Ollama running. Local AI needs no API key and sends no text to OpenAI. Start with short relevant excerpts: at most 6,000 characters across both text boxes. Small-model results are experimental.</p>
+<p id="ai-status" class="hint" role="status" hidden>Checking OpenAI configuration…</p>
+<div id="ai-consent-group" hidden>
+<label class="checkbox-label" for="ai-consent"><input id="ai-consent" type="checkbox" disabled> Send both reviewed syllabus texts to OpenAI for this comparison. API usage may incur charges.</label>
+</div>
+</fieldset>
+<p class="hint">PDF extraction runs on your server. Local AI uses Ollama on this computer. Only the OpenAI option sends reviewed text to OpenAI. This app does not save uploads or results. Credits are not converted.</p>
+<button type="submit">Compare syllabi</button>
+</form></section>
+<section class="card" aria-labelledby="results-title"><h2 id="results-title">Results</h2>
+<div id="result" role="status" aria-live="polite">Paste both syllabi to begin.</div></section>
+<footer>Your university makes the final recognition decision. Always ask your advisor to review the evidence.</footer>
+</main></body></html>
