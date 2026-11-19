@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Course Match</title>
+<link rel="stylesheet" href="/static/style.css?v=8">
+<script src="/static/app.js?v=8" defer></script>
+</head>
+<body>
+<header class="site-header"><div class="wrap bar">
+<p class="bar-label">Bocconi exchange · 2026–27</p>
+<!-- Placeholder monogram, not the official Bocconi logo. Replace with the official asset if you have permission to use it. -->
+<svg class="logo" role="img" aria-label="B monogram" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="#0a4fc4"/><text x="32" y="47" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="44" fill="#fff">B</text></svg>
+</div></header>
+<section class="hero"><div class="wrap">
+<h1>Course Match</h1>
+<p class="intro">Helps incoming exchange students find Bocconi courses that fit their degree and interests. Compare a course from your home university with a Bocconi course, or upload your CV to get course suggestions. Results are suggestions to discuss with your advisor.</p>
+</div></section>
+<main class="wrap">
+<div class="tabs" role="tablist" aria-label="What would you like to do?">
+<button type="button" role="tab" id="tab-syllabus" aria-controls="panel-syllabus" aria-selected="true">Syllabus comparison</button>
+<button type="button" role="tab" id="tab-recommend" aria-controls="panel-recommend" aria-selected="false" tabindex="-1">CV course recommendations</button>
+</div>
+
+<section class="card" id="panel-syllabus" role="tabpanel" aria-labelledby="tab-syllabus" data-kind="syllabus">
+<h2>Compare your course with the Bocconi offer</h2>
+<p class="lead">Add a course from your home university. We shortlist courses from the Fall 2026 and Spring 2027 exchange offer, read their official Bocconi pages and show quotes from both sides. You do not need to find or upload any Bocconi syllabus.</p>
+<form class="panel-form" novalidate>
+<fieldset><legend><span class="step">1</span> Add your home-university course</legend>
+<p class="instruction">Upload your course syllabus as a PDF, or paste a link to your course or degree page.</p>
+<div class="source-switch" role="radiogroup" aria-label="How do you want to add your course?">
+<label class="option"><input type="radio" name="syllabus-home-source" value="file" checked> Upload a PDF of my syllabus</label>
+<label class="option"><input type="radio" name="syllabus-home-source" value="link"> Paste a link to my course or degree page</label>
+</div>
+<div class="source-file">
+<input class="pdf-input" data-side="home" id="syllabus-home-pdf" type="file" accept="application/pdf,.pdf" aria-label="Upload your home-university syllabus as a PDF">
+<p class="hint upload-status" data-side="home" role="status" aria-live="polite">No PDF selected. Limits: 10 MB, 30 pages. Scanned PDFs need OCR first.</p>
+<details class="preview" data-side="home" hidden><summary>View extracted tables</summary><div class="tables"></div></details>
+</div>
+<div class="source-link" hidden>
+<label class="field-label" for="syllabus-home-link">Link to your course or degree description</label>
+<div class="link-row"><input type="url" id="syllabus-home-link" maxlength="2000" placeholder="https://www.youruniversity.edu/courses/…" autocomplete="off"><button type="button" class="secondary read-link">Read page</button></div>
+<p class="hint link-status" role="status" aria-live="polite">Public pages only, on a standard web address. Pages that need a login or load their text with JavaScript cannot be read: save the page as a PDF and upload that instead. Our server opens the link once to read it and saves nothing.</p>
+</div>
+<details class="text-check"><summary>Check the text read from your course</summary>
+<p class="hint">Only this text is used. Correct it if the PDF or page was read badly.</p>
+<textarea class="doc" data-side="home" id="syllabus-home" rows="8" maxlength="30000" aria-label="Text read from your course"></textarea></details>
+</fieldset>
+<fieldset><legend><span class="step">2</span> Choose term and level</legend>
+<p class="instruction">Select at least one term and your study level.</p>
+<div class="choices">
+<div><p class="field-label">Term</p>
+<label class="option"><input type="checkbox" class="term" value="fall" checked> Fall 2026</label>
+<label class="option"><input type="checkbox" class="term" value="spring" checked> Spring 2027</label></div>
+<div><p class="field-label">Your level</p>
+<label class="option"><input type="radio" name="syl-level" value="graduate" checked> Graduate — graduate and undergraduate courses</label>
+<label class="option"><input type="radio" name="syl-level" value="undergraduate"> Undergraduate — undergraduate courses only</label></div>
+</div>
+</fieldset>
+<fieldset><legend><span class="step">3</span> How courses are compared</legend>
+<p class="instruction">Keyword comparison: your course text is matched with the titles of the courses in the offer, then with the words on each official Bocconi page. This works on any computer, needs no setup and does not send your text to any AI service.</p>
+</fieldset>
+<fieldset class="final"><legend><span class="step">4</span> Find matching Bocconi courses</legend>
+<p class="instruction">Press the button. Reading the Bocconi pages can take up to a minute. Then read the quotes, open the course pages and show your matches to your advisor. Nothing you enter is saved and credits are never converted.</p>
+<button class="submit" type="submit">Find matching Bocconi courses</button>
+</fieldset>
+</form>
+<h2 class="results-title">Your matches</h2>
+<div class="result" role="status" aria-live="polite">Your matches will appear here after step 4.</div>
+</section>
+
+<section class="card" id="panel-recommend" role="tabpanel" aria-labelledby="tab-recommend" data-kind="recommend" hidden>
+<h2>Find Bocconi courses that fit your CV</h2>
+<p class="lead">Follow the five steps to get suggestions from the Fall 2026 and Spring 2027 exchange offer, with the credits and a link to each course description.</p>
+<form class="panel-form" novalidate>
+<fieldset><legend><span class="step">1</span> Upload your CV</legend>
+<p class="instruction">Choose your CV as a PDF. Limits: 10 MB and 30 pages. Scanned PDFs need OCR first.</p>
+<input class="pdf-input" data-side="home" id="rec-cv-pdf" type="file" accept="application/pdf,.pdf" aria-label="Upload your CV as a PDF">
+<p class="hint upload-status" data-side="home" role="status" aria-live="polite">No CV selected.</p>
+<details class="preview" data-side="home" hidden><summary>View extracted tables</summary><div class="tables"></div></details>
+<details class="text-check"><summary>Check the text read from your CV</summary>
+<p class="hint">Only this text is used. Correct it if the PDF was read badly, and remove details you do not need, such as your address and phone number.</p>
+<textarea class="doc" data-side="home" id="rec-cv" rows="8" maxlength="30000" aria-label="Text read from your CV"></textarea></details>
+</fieldset>
+<fieldset><legend><span class="step">2</span> Tell us your goals</legend>
+<p class="instruction">Enter the job you want. Interests are optional.</p>
+<label class="field-label" for="rec-job">Job or career you are interested in</label>
+<input id="rec-job" type="text" maxlength="500" placeholder="For example: credit risk analyst, brand manager, data analyst">
+<label class="field-label" for="rec-interests">Interests or skills you want to build (optional)</label>
+<textarea id="rec-interests" rows="2" maxlength="1000" placeholder="For example: sustainable finance, consumer behaviour, statistics"></textarea>
+</fieldset>
+<fieldset><legend><span class="step">3</span> Choose term and level</legend>
+<p class="instruction">Select at least one term and your study level.</p>
+<div class="choices">
+<div><p class="field-label">Term</p>
+<label class="option"><input type="checkbox" class="term" value="fall" checked> Fall 2026</label>
+<label class="option"><input type="checkbox" class="term" value="spring" checked> Spring 2027</label></div>
+<div><p class="field-label">Your level</p>
+<label class="option"><input type="radio" name="level" value="graduate" checked> Graduate — graduate and undergraduate courses</label>
+<label class="option"><input type="radio" name="level" value="undergraduate"> Undergraduate — undergraduate courses only</label></div>
+</div>
+</fieldset>
+<fieldset><legend><span class="step">4</span> How courses are found</legend>
+<p class="instruction">Your CV and goals are matched with the titles of the courses in the offer. This works on any computer, needs no setup and does not send your CV anywhere.</p>
+</fieldset>
+<fieldset class="final"><legend><span class="step">5</span> Get your recommendations</legend>
+<p class="instruction">Press the button, open each course description and discuss your list with your advisor. Nothing you enter is saved and credits are never converted.</p>
+<button class="submit" type="submit">Get course recommendations</button>
+</fieldset>
+</form>
+<h2 class="results-title">Your recommendations</h2>
+<div class="result" role="status" aria-live="polite">Your list will appear here after step 5.</div>
+</section>
+</main>
+<footer><div class="wrap">Your university makes the final recognition decision. Always ask your advisor to review the evidence.</div></footer>
+</body>
+</html>
